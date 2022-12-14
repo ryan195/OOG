@@ -70,19 +70,19 @@ def my_pow(base, power): #Inefficient, O(n)
     if power == 0:
         return 1
     else:
-        return base * my_power(base, power - 1)
+        return base * my_pow(base, power - 1)
 
-def my_pow(base, power): #More efficient, O(logn)
+def better_my_pow(base, power): #More efficient, O(logn)
     if power == 0:
         return 1
-    half_pow = my_pow(base, power//2)
+    half_pow = better_my_pow(base, power//2)
     if power % 2 == 0:
         return half_pow * half_pow
     return base * half_pow * half_pow
 
-def my_pow(base, power): #What if my_pow(base, power//2) calculated twice? O(n)
+def worse_my_pow(base, power): #What if my_pow(base, power//2) calculated twice? O(n)
     if power == 0:
         return 1
     if power % 2 == 0:
-        return my_pow(base, power//2) * my_pow(base, power//2)
-    return base * my_pow(base, power//2) * my_pow(base, power//2)
+        return worse_my_pow(base, power//2) * worse_my_pow(base, power//2)
+    return base * worse_my_pow(base, power//2) * worse_my_pow(base, power//2)
